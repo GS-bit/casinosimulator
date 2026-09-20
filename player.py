@@ -3,9 +3,16 @@ class Player:
     This class represents the player.
     """
 
-    def __init__(self, name):
-        self.name = name
-        self._money = 1000  # Initial money every player begins with
+    def __init__(self, nickname, money=1000):
+        self._nickname = nickname
+        self._money = money
+
+    def get_nickname(self) -> str:
+        """
+        It returns the player's nickname.
+        """
+
+        return self._nickname
 
     def get_money(self) -> int:
         """

@@ -2,6 +2,7 @@ import random
 import time
 
 import utils
+from database import Database
 
 class SlotMachine:
     """
@@ -22,6 +23,8 @@ class SlotMachine:
                         {"name": "7", "probability": 4.8, "multiplier": 15}]
 
         self.player = player  # We need to connect the slot machine to our player, so we can make the bets possible.
+
+        self.database = Database()  # Data to save during the game
 
         self.gameloop()
 
@@ -106,5 +109,7 @@ class SlotMachine:
             else:
                 self.player.lose_money(bet)
                 utils.write("You lost simu$ " + str(bet) + "!")
+
+            self.database.save_players_data(self.player)
         else:
             utils.write(f"Sorry, you can't bet simu$ {bet}, for you don't have this amount...")
